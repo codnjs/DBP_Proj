@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import aca.mirim.domain.GiveBoardVO;
 import aca.mirim.domain.Criteria;
+import aca.mirim.domain.GetBoardVO;
 import aca.mirim.service.GetBoardService;
 import aca.mirim.service.GiveBoardService;
 
@@ -67,14 +68,13 @@ public class BoardController {
 	@GetMapping("/get_money_list")
 	public String getListGet(Model model) {
 		System.out.println("get get...");
+		List<GetBoardVO> brdlist = getBrdService.getList();
 		
-		/*List<BoardVO> brdlist = getBrdService.getList();
-		
-		for (BoardVO boardVO : brdlist) {
+		for (GetBoardVO boardVO : brdlist) {
 			System.out.println(" " + boardVO);
 		}
-		model.addAttribute("sample", "3514 이채원");
-		model.addAttribute("list", getBrdService.getList());*/
+		// model.addAttribute("sample", "3514 이채원");
+		model.addAttribute("get_money_list", getBrdService.getList());
 		
 		return "/get_money_list";
 	}

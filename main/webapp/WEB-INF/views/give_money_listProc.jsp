@@ -1,61 +1,109 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<meta charset="EUC-KR">
-<title>게시판 목록</title>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+  <title>Bootstrap Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gugi|Gaegu|Do+Hyeon|Jua|Poor+Story|Nanum+Gothic:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-<h2> 게시판 목록 </h2>
-<div class="row">
-  <div class="panel panel-default">
-  <div class="panel-heading"> 게시판 목록 페이지
-    <a href="/register"> Register(등록)</a>
-  	<a href="/register">
-  		<button type="button" class="btn btn-primary pull-right">등록버튼</button>  		
-  	</a>
-  	<form action="/list" method="post">
-  		<select name="type">
-  			<option value="">----</option>
-  		</select>
-  		<!-- <input type="text" name="keyword">
-  		<button class="btn btn-success">검 색</button>   -->	
-  	</form>
+
+<div class="container">
+  <h2 style="color: #00ACE1; font-family: 'Nanum Gothic', sans-serif; font-weight: 700;">00님 잊지말고 받아가세요!</h2>
+  <p style="color: #00ACE1; font-family: 'Nanum Gothic', sans-serif; font-weight: 400;">제목을 클릭해서 일기 내용을 확인해요!</p>
+   <div class="sort-div" style="float: right;">
+	   <div class="btn-class" style="float: right; margin-bottom: 8px;">
+	   	<button type="button" class="btn btn-primary">정렬 적용</button>
+	   </div>
+	   <span class="custom-control custom-checkbox mb-3" style="width: 150px;">
+	      <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+	      <label class="custom-control-label" for="customCheck">이자 설정</label>
+	   </span>
+	   
+	   <select name="cars" class="custom-select mb-3" style="width: 250px;">
+	      <option selected>정렬 방식</option>
+	      <option value="date_recent">날짜순-최근</option>
+	      <option value="date_past">날짜순-오래된</option>
+	      <option value="term_long">기한순-긴</option>
+	      <option value="term_short">기한순-짧은</option>
+	      <option value="price_high">가격순-비싼</option>
+	      <option value="price_low">가격순-싼</option>
+	    </select>
+	</div>
+	<div class="container-list" style="clear: both;">
+	  <div class="list-group">
+	  	<c:forEach var="board" items="${give_money_list}">
+	    	<a href="#" class="list-group-item"><fmt:formatDate value="${board.when_ }" pattern="yyyy년 MM월 dd일 작성"></fmt:formatDate></a>
+	    </c:forEach>
+	  </div>
+	</div> 
+	 
+  <!-- The Modal -->
+  <div class="modal fade" id="give_regi_modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">일기장 등록</h4>
+          
+        </div>       
+        <!-- Modal body -->
+        <div class="modal-body">
+          <jsp:include page="regi_table.jsp"></jsp:include>   
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">등록</button>
+          <button type="button" class="btn btn" data-dismiss="modal">닫기</button>
+        </div>        
+      </div>
+    </div>
   </div>
-  <div class="panel-body">
-	<table class="table table-striped table-bordered table-hover">
-	  <thead>
-		<tr>
-			<th> 번호 </th>
-			<th> 누가 </th>
-			<th> 언제 </th>
-			<th> 왜 </th>
-			<th> 얼마나 </th>			
-	  </thead>	
-	  <c:forEach var="board" items="${give_money_list}">
-	  <tr>
-		<td><c:out value="${board.bno }"></c:out></td>
-		<td><a href="/board/get?bno=<c:out value="${board.bno}" />">
-              <c:out value="${board.who}" />
-              <%-- <c:if test="${board.replyCnt != 0 }">
-              	<b>[ <c:out value="${board.replyCnt }"/> ] </b>
-              </c:if> --%>
-              </a></td>
-		<td><fmt:formatDate value="${board.when_ }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
-		<td><c:out value="${board.why }" /></td>
-		<td><c:out value="${board.how }" /></td>
-	  </tr>				
-	  </c:forEach>
-    </table>
-  </div>
+  
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">     
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>       
+        <!-- Modal body -->
+        <div class="modal-body">
+          <input type="text" id="datepicker">
+        </div>       
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">등록</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>      
+      </div>
+    </div>
+  </div> 
 </div>
-</div>
+    
 </body>
+<script>
+<script>
+$(function() {
+    $("#datepicker").datepicker({
+        
+    });
+    $("#DatePicker").datepicker({
+        
+    });
+});
+</script>
+</script>
 </html>

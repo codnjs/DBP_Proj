@@ -27,12 +27,16 @@
 		}
 		
 		if(confirm("로그인 하시겠습니까?")) {			
-			location.href="/loginPost";
+			if($("#userid")==$("#userpw"))
+				alert("아이디와 비밀번호가 일치하지 않습니다");
+			else
+				location.href="/loginPost";		
 		} else {
-			alert("로그인에 실패하였습니다ㅠㅠ");
+			alert("로그인 하지 않았습니다");
 		}
 	} 
 </script>
+
 </head>
 <body>
 <div class="row userDiv">

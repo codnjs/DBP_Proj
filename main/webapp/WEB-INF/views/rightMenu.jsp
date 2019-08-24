@@ -30,7 +30,7 @@
 <body>
 	<div class="right-icons">
 		<div id="right-icon">
-			<button type="button" data-toggle="modal" data-target="#myModal"><img src="${pageContext.request.contextPath}/resources/img/edit.png"></button>
+			<button type="button" data-toggle="modal" data-target="#give_regi_modal"><img src="${pageContext.request.contextPath}/resources/img/edit.png"></button>
 		</div>
 		<div id="right-icon">
 			<button type="button" data-toggle="modal" data-target="#myModal"><img src="${pageContext.request.contextPath}/resources/img/calendar (2).png"></button>
