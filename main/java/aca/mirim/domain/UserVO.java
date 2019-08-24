@@ -5,7 +5,6 @@ public class UserVO {
 	private int uno;
 	private String userid; 
     private String userpw; 
-    private String username;
     
 	public int getUno() {
 		return uno;
@@ -25,15 +24,9 @@ public class UserVO {
 	public void setUserpw(String userpw) {
 		this.userpw = userpw;
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
 	@Override
 	public String toString() {
-		return "UserVO [uno=" + uno + ", userid=" + userid + ", userpw=" + userpw + ", username=" + username	+ "]";
+		return "UserVO [uno=" + uno + ", userid=" + userid + ", userpw=" + userpw + "]";
 	}
     
     

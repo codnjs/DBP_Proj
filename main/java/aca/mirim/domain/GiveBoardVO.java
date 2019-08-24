@@ -2,9 +2,9 @@ package aca.mirim.domain;
 
 import java.util.Date;
 
-public class BoardVO {
+public class GiveBoardVO {
 	public int bno;
-	public String username;
+	public String userid;
 	public String who;
 	public Date when_;
 	public Date until_;
@@ -12,11 +12,11 @@ public class BoardVO {
 	public String why;
 	public String memo;
 	
-	public String getUsername() {
-		return username;
+	public String getUserid() {
+		return userid;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	public Date getUntil_() {
 		return until_;
@@ -63,7 +63,7 @@ public class BoardVO {
 	
 	@Override
 	public String toString() {
-		return "BoardVO [bno=" + bno + ", username=" + username + ", who=" + who + ", when_=" + when_ + ", until_="
+		return "BoardVO [bno=" + bno + ", userid=" + userid + ", who=" + who + ", when_=" + when_ + ", until_="
 				+ until_ + ", how=" + how + ", why=" + why + ", memo=" + memo + "]";
 	}
 	

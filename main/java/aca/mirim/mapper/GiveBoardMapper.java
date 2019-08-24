@@ -8,29 +8,29 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import aca.mirim.domain.BoardVO;
+import aca.mirim.domain.GiveBoardVO;
 import aca.mirim.domain.Criteria;
 
 public interface GiveBoardMapper {
 	// 전체 출력, 내용 출력, 보관된 카드 출력
 	@Select("select * from tbl_give_board")
-	public List<BoardVO> getList();
+	public List<GiveBoardVO> getList();
 	
 	/*@Select("select * from tbl_give_board where ${type} like '%'||#{keyword}||'%'")
 	public List<BoardVO> getSearch(Criteria cri);*/
 	
 	@Select("select * from tbl_give_board where bno = #{bno}")
-	public BoardVO read(int bno); 
+	public GiveBoardVO read(int bno); 
 	
 	
 	// 글 작성(갑,을)
 	@Insert("insert into tbl_give_board (bno, who, how, why) values (seq_board.nextval, #{who}, #{how}, #{why})")
-	public void insert (BoardVO board);
+	public void insert (GiveBoardVO board);
 	
 	
 	// 글 수정
 	@Update("update tbl_give_board set title =#{title}, content=#{content}, writer=#{writer}, updatedate =sysdate where bno = #{bno}")
-	public void update(BoardVO board); 
+	public void update(GiveBoardVO board); 
 		
 	
 	// 글 삭제
@@ -39,7 +39,7 @@ public interface GiveBoardMapper {
 
 	
 	@Select("select * from tbl_give_board where ${type} like '%'||#{keyword}||'%'")
-	public List<BoardVO> getSearch(Criteria cri); 
+	public List<GiveBoardVO> getSearch(Criteria cri); 
 		
 		
 	

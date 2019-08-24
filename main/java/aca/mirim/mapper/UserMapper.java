@@ -8,13 +8,13 @@ import aca.mirim.domain.UserVO;
 public interface UserMapper {
 	
 	@Select("select * from tbl_user "
-			+ "where userid = #{loginid} and userpw = #{loginpw}")
+			+ "where userid = #{userid} and userpw = #{userpw}")
 	public UserVO login(UserVO vo);
 	
 	@Select("select * from tbl_user")
 	public List<UserVO> getList(); 
 	
-	@Insert("insert into tbl_user (userid, userpw, username) values (#{userid}, #{userpw}, #{username})")
-	public int signup(UserVO vo);
+	@Insert("insert into tbl_user (uno, userid, userpw) values (seq_user.nextval, #{userid}, #{userpw})")
+	public void signup(UserVO vo);
 	
 }

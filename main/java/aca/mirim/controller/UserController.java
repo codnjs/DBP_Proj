@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,93 +30,53 @@ import aca.mirim.mapper.UserMapper;
 import aca.mirim.service.UserService;
 
 @Controller
-@Repository
-/*@RequestMapping("/user/*")*/
 public class UserController {
-		
 	@Autowired
-	private UserService userService;
-	@Autowired
-	private UserMapper userMapper;
+	UserService  userService; 
 	
-	// 회원가입 화면	
-	@GetMapping("/signup")
-	public String signupGET(UserVO user, Model model) {
-		System.out.println("signup get...");
-		return "/signup";
-	}
-	
-	@PostMapping("/signup")
-	public String signupPOST(UserVO user, RedirectAttributes redirectAttributes) throws Exception {
-		System.out.println("signup post...");		
-		userService.signUp(user);
-		redirectAttributes.addFlashAttribute("msg", "SIGNUP");
-		return "redirect:/login";
-	}
-	
-	// 로그인 화면	
 	@GetMapping("/login")
-	public void loginGET(UserVO user, Model model) {
-		System.out.println("login get...");
+	public void login(@ModelAttribute("vo") UserVO uservo) {
+		System.out.println("login get..." );
 	}
 	
-	@PostMapping("/login")
-	public String loginPOST(UserVO vo, Model model, HttpServletRequest req) throws Exception {
-		System.out.println("login post...");
-		
-		model.addAttribute("login result", "success");
-		HttpSession session = req.getSession();
-		UserVO login = userService.login(vo);
-		
-		if(login == null) {
-			session.setAttribute("member", null);
-		} else {
-			session.setAttribute("member", login);
-		}
-		
-		return "/login";
+	@GetMapping("/loginProc")
+	public void loginProc(){
+		System.out.println("loginProc...");		
 	}
 	
-	@RequestMapping(value="/login")
-	public ModelAndView alreadyLogin(HttpServletRequest request, HttpServlet response, CommandMap commandMap) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		
-		
-		// 세션정보가 null이 아닐 때
-		if (request.getSession().getAttribute("loginUser") != null) {
-			String msg = "이미 로그인 된 상태입니다.";
-			mav.addObject("msg", msg);
-			mav.setViewName("/");
-		} else {
-			mav.setViewName("/login");
-		}		
-		return mav;
-		
+	@PostMapping("/loginProc")
+	public void loginPost(UserVO uservo, HttpSession session,  Model model) {
+		System.out.println("loginProc.... " + uservo);
+		UserVO vo = userService.login(uservo);
+		if  (vo == null) {
+			return ;
+		} 
+		model.addAttribute("userVO", vo); 		
 	}
 	
-	// 로그인 처리
-	/*@PostMapping("/loginCheck.do")
-	public ModelAndView loginPost(@ModelAttribute UserVO vo, HttpSession session) {
-		boolean result = userService.loginCheck(vo, session);
-		ModelAndView mav = new ModelAndView();
-		
-		if(result == true) {
-			mav.setViewName("/board/list"); // list 페이지로 이동
-			mav.addObject("msg", "로그인 성공!");
-		} else {
-			mav.setViewName("/user/login");
-			mav.addObject("msg", "로그인 실패 ㅠㅠ");
-		}
-		
-		return mav;
-	}*/
+	@PostMapping("/loginPost")
+	public void loginPost (UserVO uservo, Model model) {	
+		System.out.println("loginPost...");
+		System.out.println(uservo);
+		userService.login(uservo);
+		System.out.println("로그인됨");
+	}
 	
-	// 로그아웃 처리
-	/*@RequestMapping("/logout.do")
-	public ModelAndView logout(HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index");
-		mav.addObject("msg", "로그아웃 성공");
-		return null;
-	}*/
+	@GetMapping("/signup")
+	public void signup (UserVO uservo){
+		System.out.println("signup get...");		
+	}
+	
+	@PostMapping("/signupProc")
+	public void signupProc (UserVO uservo, Model model) {
+		System.out.println("signupProc..." + uservo);	
+	}
+		
+	@PostMapping("/signupPost")
+	public void signupPost (UserVO uservo, Model model) {	
+		System.out.println("signupPost...");
+		System.out.println(uservo);
+		userService.signUp(uservo);
+		System.out.println("값 집어넣음");
+	}
 }

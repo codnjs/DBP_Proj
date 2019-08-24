@@ -16,30 +16,23 @@ public class UserServiceImpl implements UserService{
 	UserMapper userMapper;
 
 	@Override
-	public int signUp(UserVO vo) {
-		return userMapper.signup(vo);
+	public void signUp(UserVO vo) {
+		userMapper.signup(vo);
 	}
 			
 	@Override
-	public UserVO login(UserVO vo) throws Exception{
+	public UserVO login(UserVO vo){
 		return userMapper.login(vo);
 	}
 
 	@Override
-	public List<UserVO> getList()  throws Exception{
+	public List<UserVO> getList() {
 		return userMapper.getList();
 	}
 
 	@Override
-	public UserVO logout(HttpSession session)  throws Exception{
+	public UserVO logout(HttpSession session) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-
-	@Override
-	public void signup(UserVO vo) throws Exception {
-		// TODO Auto-generated method stub
-		
 	}
 }

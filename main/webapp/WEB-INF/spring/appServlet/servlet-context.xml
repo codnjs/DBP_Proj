@@ -21,7 +21,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="aca.mirim." />
+	<context:component-scan base-package="aca.mirim.controller" />
+	
 	
 	
 </beans:beans>

@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import aca.mirim.domain.BoardVO;
+import aca.mirim.domain.GiveBoardVO;
 import aca.mirim.domain.Criteria;
 
 @Service
 public interface GiveBoardService {
-	public List<BoardVO> getList();
-	public void reigster(BoardVO board);
-	public void modify (BoardVO board);
+	public List<GiveBoardVO> getList();
+	public void reigster(GiveBoardVO board);
+	public void modify (GiveBoardVO board);
 	public void remove (int bno);
-	public BoardVO get(int bno);
-	public List<BoardVO> getSearch(Criteria cri);
+	public GiveBoardVO get(int bno);
+	public List<GiveBoardVO> getSearch(Criteria cri);
 }

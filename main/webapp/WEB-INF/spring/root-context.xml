@@ -22,5 +22,5 @@
 	   <property name="dataSource" ref="dataSource"></property>
 	</bean>
 	<mybatis-spring:scan base-package="aca.mirim.mapper"/>
-	<context:component-scan base-package="spring.*"></context:component-scan>	
+	<context:component-scan base-package="aca.mirim.*"></context:component-scan>	
 </beans>

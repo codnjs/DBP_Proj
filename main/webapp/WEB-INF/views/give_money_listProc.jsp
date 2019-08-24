@@ -39,7 +39,7 @@
 			<th> 왜 </th>
 			<th> 얼마나 </th>			
 	  </thead>	
-	  <c:forEach items="${give_money_list }" var="board">
+	  <c:forEach var="board" items="${give_money_list}">
 	  <tr>
 		<td><c:out value="${board.bno }"></c:out></td>
 		<td><a href="/board/get?bno=<c:out value="${board.bno}" />">

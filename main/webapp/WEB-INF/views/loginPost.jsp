@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	loginOK 페이지입니다
+<script type="text/javascript">
+	alert("로그인에 성공하셨습니다!");
+	self.location="/";
+</script>
 </body>
 </html>

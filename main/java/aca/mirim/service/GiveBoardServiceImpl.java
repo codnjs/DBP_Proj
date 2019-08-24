@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import aca.mirim.domain.BoardVO;
+import aca.mirim.domain.GiveBoardVO;
 import aca.mirim.domain.Criteria;
 import aca.mirim.mapper.GiveBoardMapper;
 
@@ -15,17 +15,17 @@ public class GiveBoardServiceImpl implements GiveBoardService {
 	GiveBoardMapper brdMapper;
 
 	@Override
-	public List<BoardVO> getList() {
+	public List<GiveBoardVO> getList() {
 		return brdMapper.getList();
 	}
 
 	@Override
-	public void reigster(BoardVO board) {
+	public void reigster(GiveBoardVO board) {
 		brdMapper.insert(board);
 	}
 
 	@Override
-	public void modify(BoardVO board) {
+	public void modify(GiveBoardVO board) {
 		brdMapper.update(board);
 	}
 
@@ -35,12 +35,12 @@ public class GiveBoardServiceImpl implements GiveBoardService {
 	}
 
 	@Override
-	public BoardVO get(int bno) {
+	public GiveBoardVO get(int bno) {
 		return brdMapper.read(bno);
 	}
 
 	@Override
-	public List<BoardVO> getSearch(Criteria cri) {
+	public List<GiveBoardVO> getSearch(Criteria cri) {
 		// TODO Auto-generated method stub
 		return brdMapper.getSearch(cri);
 	}

@@ -10,15 +10,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script>
-	function loginCheck() {
-		if($("#userid").val().length < 1) {
-			alert("아이디를 입력해주세요.");
+	function loginCheck() {		
+		var userid = $("#userid").val();
+		var userpw = $("#userpw").val();
+		
+		if($("#userid").val().length == 0) {
+			alert("아이디를 입력해주세요");
 			$("#userid").focus();
-		}		 
-		if($("#userpw").val().length < 1) {
-			alert("비밀번호를 입력해주세요.");
+			return false;
+		}
+		
+		if($("#userpw").val().length == 0) {
+			alert("비밀번호를 입력해주세요");
 			$("#userpw").focus();
-		}		
+			return false;
+		}
+		
+		if(confirm("로그인 하시겠습니까?")) {			
+			location.href="/loginPost";
+		} else {
+			alert("로그인에 실패하였습니다ㅠㅠ");
+		}
 	} 
 </script>
 </head>
@@ -27,7 +39,7 @@
   <div class="panel panel-default">
   <div class="panel-heading"> 로그인 </div>
   <div class="panel-body">
-	<form action="/" method="post">
+	<form action="/loginPost" method="post">
 	  <div class="form-group">	  
 		<input type="text" id="userid" name="userid" placeholder="아이디">
 	  </div>

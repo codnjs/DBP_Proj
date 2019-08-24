@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import aca.mirim.domain.BoardVO;
+import aca.mirim.domain.GiveBoardVO;
 import aca.mirim.domain.Criteria;
 import aca.mirim.service.GetBoardService;
 import aca.mirim.service.GiveBoardService;
@@ -23,12 +23,11 @@ import aca.mirim.service.GiveBoardService;
 /*@RequestMapping("/board/*")*/
 public class BoardController {
 	
-	@Qualifier("giveBrdService")
+	@Autowired
 	private GiveBoardService giveBrdService;
-	@Qualifier("getBrdService")
+	
+	@Autowired
 	private GetBoardService getBrdService;
-	
-	
 	
 	@PostMapping("/give_money_list")
 	public String giveListPost(Criteria cri, Model model) {
@@ -44,12 +43,12 @@ public class BoardController {
 	@GetMapping("/give_money_list")
 	public String giveListGet(Model model) {
 		System.out.println("give get...");
-		/*List<BoardVO> brdlist = giveBrdService.getList();
-		for (BoardVO boardVO : brdlist) {
+		List<GiveBoardVO> brdlist = giveBrdService.getList();
+		for (GiveBoardVO boardVO : brdlist) {
 			System.out.println(" " + boardVO);
 		}
-		model.addAttribute("sample", "3514 이채원");
-		model.addAttribute("give_money_list", giveBrdService.getList());*/
+		// model.addAttribute("sample", "3514 이채원");
+		model.addAttribute("give_money_list", giveBrdService.getList());
 		
 		return "/give_money_list";
 	}
@@ -81,12 +80,12 @@ public class BoardController {
 	}
 	
 	@GetMapping("/register")
-	public void registerGET(BoardVO board, Model model) throws Exception {
+	public void registerGET(GiveBoardVO board, Model model) throws Exception {
 		System.out.println("register get....");
 	}
 	
 	@PostMapping("/register")
-	public String registerPOST(BoardVO board, Model model) throws Exception {
+	public String registerPOST(GiveBoardVO board, Model model) throws Exception {
 		System.out.println("register post...");
 		
 		model.addAttribute("result", "success");
