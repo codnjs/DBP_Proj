@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import aca.mirim.domain.GiveBoardVO;
 import aca.mirim.domain.Criteria;
@@ -33,11 +34,6 @@ public class BoardController {
 	@PostMapping("/give_money_list")
 	public String giveListPost(Criteria cri, Model model) {
 		System.out.println("give post... ");
-		/*List<BoardVO> searchlist = giveBrdService.getSearch(cri);
-		for (BoardVO boardVO : searchlist) {
-			System.out.println("se.ok... " + boardVO);
-		}
-		model.addAttribute("give_money_list", giveBrdService.getSearch(cri));*/
 		return "/give_money_list"; 
 	}
 	
@@ -48,7 +44,6 @@ public class BoardController {
 		for (GiveBoardVO boardVO : brdlist) {
 			System.out.println(" " + boardVO);
 		}
-		// model.addAttribute("sample", "3514 이채원");
 		model.addAttribute("give_money_list", giveBrdService.getList());
 		
 		return "/give_money_list";
@@ -57,11 +52,6 @@ public class BoardController {
 	@PostMapping("/get_money_list")
 	public String getListPost(Criteria cri, Model model) {
 		System.out.println("get post... ");
-		/*List<BoardVO> searchlist = getBrdService.getSearch(cri);
-		for (BoardVO boardVO : searchlist) {
-			System.out.println("se.ok... " + boardVO);
-		}
-		model.addAttribute("list", getBrdService.getSearch(cri));*/
 		return "/get_money_list"; 
 	}
 	
@@ -73,7 +63,6 @@ public class BoardController {
 		for (GetBoardVO boardVO : brdlist) {
 			System.out.println(" " + boardVO);
 		}
-		// model.addAttribute("sample", "3514 이채원");
 		model.addAttribute("get_money_list", getBrdService.getList());
 		
 		return "/get_money_list";
@@ -87,10 +76,24 @@ public class BoardController {
 	@PostMapping("/register")
 	public String registerPOST(GiveBoardVO board, Model model) throws Exception {
 		System.out.println("register post...");
-		
+		giveBrdService.reigster(board);
 		model.addAttribute("result", "success");
 		
 		return "redirect:/list";
+	}
+	
+	@GetMapping("/read_table_give")
+	public void getget(@RequestParam("bno") int bno, Model model) {		 
+		System.out.println("/read_table_give.... ");
+		System.out.println(giveBrdService.get(bno));
+		model.addAttribute("board", giveBrdService.get(bno));		
+	}
+	
+	@PostMapping("/read_table_give")
+	public void getpost(@RequestParam("bno") int bno, Model model) {		 
+		System.out.println("/read_table_give.... ");
+		System.out.println(giveBrdService.get(bno));
+		model.addAttribute("board", giveBrdService.get(bno));		
 	}
 	
 	@GetMapping("/main")

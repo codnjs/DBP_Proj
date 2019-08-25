@@ -20,7 +20,7 @@
 <body>
 
 <div class="container">
-  <h2 style="color: #00ACE1; font-family: 'Nanum Gothic', sans-serif; font-weight: 700;">00님 잊지말고 받아가세요!</h2>
+  <h2 style="color: #00ACE1; font-family: 'Nanum Gothic', sans-serif; font-weight: 700;">00님 잊지말고 주고가세요!</h2>
   <p style="color: #00ACE1; font-family: 'Nanum Gothic', sans-serif; font-weight: 400;">제목을 클릭해서 일기 내용을 확인해요!</p>
    <div class="sort-div" style="float: right;">
 	   <div class="btn-class" style="float: right; margin-bottom: 8px;">
@@ -44,23 +44,24 @@
 	<div class="container-list" style="clear: both;">
 	  <div class="list-group">
 	  	<c:forEach var="board" items="${give_money_list}">
-	    	<a href="#" class="list-group-item"><fmt:formatDate value="${board.when_ }" pattern="yyyy년 MM월 dd일 작성"></fmt:formatDate></a>
+	    	<a class="list-group-item"><button type="button" data-toggle="modal" data-target="#give_read_modal" style="border: none; background-color: #ffffff;">
+	    		&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${board.when_ }" pattern="yyyy년 MM월 dd일 작성"></fmt:formatDate></button></a>
 	    </c:forEach>
 	  </div>
 	</div> 
 	 
-  <!-- The Modal -->
+  <!-- 등록 modal -->
   <div class="modal fade" id="give_regi_modal">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">      
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">일기장 등록</h4>
-          
+          <h4 class="modal-title">일기장 등록</h4>         
         </div>       
         <!-- Modal body -->
         <div class="modal-body">
-          <jsp:include page="regi_table.jsp"></jsp:include>   
+          <jsp:include page="regi_table_give.jsp"></jsp:include>   
+        </div>
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">등록</button>
@@ -70,7 +71,7 @@
     </div>
   </div>
   
-  <!-- The Modal -->
+  <!-- 캘린더 modal -->
   <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">     
@@ -91,11 +92,35 @@
       </div>
     </div>
   </div> 
+  
+    <!-- 조회 modal -->
+  <div class="modal fade" id="give_read_modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">일기장 조회</h4>         
+        </div>       
+        <!-- Modal body -->
+        <form action="/give_money_list" method="post">
+	        <div class="modal-body">
+	        	(<c:out value="${board.bno }"/>)번 얼른 주고 가시길 ~~ ^^
+	         	<jsp:include page="read_table_give?bno=<c:out value='${board.bno }'/>" />
+	        </div>
+	        <!-- Modal footer -->
+	        <div class="modal-footer">
+	          <button type="submit" class="btn btn-primary" onclick="regiCheck()" >등록</button>
+	          <button type="button" class="btn btn" data-dismiss="modal">닫기</button>
+	        </div>  
+        </form>      
+      </div>
+    </div>
+  </div> 
 </div>
     
 </body>
 <script>
-<script>
+
 $(function() {
     $("#datepicker").datepicker({
         
@@ -104,6 +129,15 @@ $(function() {
         
     });
 });
-</script>
+
+function regiCheck() {
+	if(confirm("글을 등록하시겠습니까?")) {
+		alert("일기를 등록하였습니다!")
+		location.href="/give_money_list";
+	} else {
+		alert("일기가 등록되지 않았습니다");
+	}
+}
+
 </script>
 </html>
