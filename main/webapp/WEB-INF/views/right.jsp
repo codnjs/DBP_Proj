@@ -24,7 +24,7 @@
     <button class="list-group-item" onclick="javascript:location.href='/'" style="background-color: #50B15A">메인으로</a>
     <button class="list-group-item" onclick="javascript:location.href='/signup'">회원가입</a>
     <button class="list-group-item" onclick="javascript:location.href='/login'">로그인</a>
-    <button class="list-group-item" onclick="javascript:location.href='/logout'">로그아웃</a>
+    <!-- <button class="list-group-item" onclick="javascript:location.href='/logout'">로그아웃</a> -->
     <button class="list-group-item" onclick="javascript:location.href='/info'">지갑을 탁! 소개</a>
   </div>
 </div>

@@ -13,7 +13,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
@@ -57,14 +56,14 @@
         <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title">일기장 등록</h4>         
-        </div>       
+        </div>        
         <!-- Modal body -->
         <div class="modal-body">
           <jsp:include page="regi_table_give.jsp"></jsp:include>   
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">등록</button>
+          <button type="submit" class="btn btn-primary" onclick="regiCheck()" >등록</button>
           <button type="button" class="btn btn" data-dismiss="modal">닫기</button>
         </div>        
       </div>
@@ -82,7 +81,7 @@
         </div>       
         <!-- Modal body -->
         <div class="modal-body">
-          <input type="text" id="datepicker">
+          
         </div>       
         <!-- Modal footer -->
         <div class="modal-footer">
@@ -104,12 +103,12 @@
         <!-- Modal body -->
         <form action="/give_money_list" method="post">
 	        <div class="modal-body">
-	        	(<c:out value="${board.bno }"/>)번 얼른 주고 가시길 ~~ ^^
-	         	<jsp:include page="read_table_give?bno=<c:out value='${board.bno }'/>" />
+	         		<jsp:include page="read_table_give?bno=${board.bno }/>" />
+	         		<c:out value="${board.bno}"></c:out>
 	        </div>
 	        <!-- Modal footer -->
 	        <div class="modal-footer">
-	          <button type="submit" class="btn btn-primary" onclick="regiCheck()" >등록</button>
+	          <button type="submit" class="btn btn-primary" >등록</button>
 	          <button type="button" class="btn btn" data-dismiss="modal">닫기</button>
 	        </div>  
         </form>      
@@ -120,15 +119,6 @@
     
 </body>
 <script>
-
-$(function() {
-    $("#datepicker").datepicker({
-        
-    });
-    $("#DatePicker").datepicker({
-        
-    });
-});
 
 function regiCheck() {
 	if(confirm("글을 등록하시겠습니까?")) {

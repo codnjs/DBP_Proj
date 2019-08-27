@@ -55,10 +55,19 @@ public class UserController {
 	}
 	
 	@PostMapping("/loginPost")
-	public void loginPost (UserVO uservo, Model model) {	
+	public void loginPost (UserVO uservo, HttpSession session) {	
 		System.out.println("loginPost...");
+		/*boolean result = userService.loginCheck(uservo, session);
+		ModelAndView mav = new ModelAndView();
+		if(result == true) {
+			mav.setViewName("index");
+			mav.addObject("msg", "success");
+		} else {
+			mav.setViewName("login");
+			mav.addObject("msg", "failure");
+		}*/
 		System.out.println(uservo);
-		userService.login(uservo);
+		System.out.println(userService.login(uservo));
 		System.out.println("·Î±×ÀÎµÊ");
 	}
 	

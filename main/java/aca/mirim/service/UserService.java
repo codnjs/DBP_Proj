@@ -13,7 +13,7 @@ public interface UserService {
 	
 	public void signUp(UserVO vo);
 	public UserVO login(UserVO vo);
-	public UserVO logout(HttpSession session);
+	public void logout(HttpSession session);
 	public List<UserVO> getList();
 
 }

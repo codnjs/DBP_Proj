@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,16 +25,16 @@
 			alert("비밀번호를 입력해주세요");
 			$("#userpw").focus();
 			return false;
+		} 
+		
+		if($("#userpw").val().length > 0 && $("#userid").val().length > 0){
+			alert("들어옴");
+		} else {
+			alert("으엑");
 		}
 		
-		if(confirm("로그인 하시겠습니까?")) {			
-			if($("#userid")==$("#userpw"))
-				alert("아이디와 비밀번호가 일치하지 않습니다");
-			else
-				location.href="/loginPost";		
-		} else {
-			alert("로그인 하지 않았습니다");
-		}
+		
+		
 	} 
 </script>
 
@@ -50,7 +51,7 @@
 	  <div class="form-group">	
 		<input type="password" id="userpw" name="userpw" placeholder="비밀번호"><br>
 	  </div>
-		<button type="submit" class="btn btn-success" onclick="loginCheck()"> 로그인 </button>
+		<button type="button" class="btn btn-success" onclick="loginCheck()"> 로그인 </button>
 	</form>
   </div>
 </div>

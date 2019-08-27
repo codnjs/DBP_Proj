@@ -31,8 +31,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserVO logout(HttpSession session) {
-		// TODO Auto-generated method stub
-		return null;
+	public void logout(HttpSession session) {
+		
 	}
 }

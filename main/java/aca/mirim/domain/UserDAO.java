@@ -11,9 +11,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserDAO {
-	public UserVO login(UserVO vo) throws Exception;
-	public List<UserVO> getList() throws Exception;
-	public int signup(UserVO vo) throws Exception;
-	public UserVO viewUser(UserVO vo) throws Exception;
-	public void logout(HttpSession session) throws Exception;
+	public UserVO login(UserVO vo);
+	public List<UserVO> getList();
+	public int signup(UserVO vo);
+	public void logout(HttpSession session);
 }

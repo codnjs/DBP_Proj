@@ -17,7 +17,7 @@
 	<table border="1" class="regi_table" style="border: 5px solid #00ACE1;">
    <tr>
     <td width=100>
-       누가
+       <b>누가</b>
     </td>
     <td width=500>
        <input type="text" class="form-control" id="who" name='who' value="${board.who }" readonly="readonly" style="width:200px; float: left;">&nbsp;(이)에게/께
@@ -25,7 +25,7 @@
    </tr> 
     <tr>
     <td width=100>
-       언제
+       <b>언제</b>
     </td>
     <td>
        <input type="text" class="form-control" name="when_" value="${board.when_ }" readonly="readonly" id="DatePicker" style="width:200px; float: left;">&nbsp;에
@@ -33,7 +33,7 @@
    </tr> 
     <tr>
     <td width=100>
-       왜
+       <b>왜</b>
     </td>
     <td>
        <input type="text" class="form-control" id="" value="${board.why }" readonly="readonly" name="why" style="">
@@ -41,7 +41,7 @@
    </tr> 
     <tr>
     <td width=100>
-       얼만큼
+       <b>얼만큼</b>
     </td>
     <td>
        <input type="text" class="form-control" id="" value="${board.how }" readonly="readonly" name="how" style="width:200px; float: left;">&nbsp;원을 빌려갔다!!<br>
@@ -50,7 +50,7 @@
    </tr> 
     <tr>
     <td width=100>
-       기한
+       <b>기한</b>
     </td>
     <td>
        <input type="text" class="form-control" name="until_" id="DatePicker" style="width:200px; float: left;"> 까지
@@ -58,11 +58,22 @@
    </tr> 
     <tr>
     <td width=100>
-       메모
+       <b>메모</b>
     </td>
     <td>
        <input type="text" class="form-control" id="" placeholder="이번이 벌써 네 번째인데... 미안해죽겠다.. 
 얼른 갚아야할듯" readonly="readonly" name="memo">
+    </td>
+   </tr> 
+   <tr>
+    <td width=100>
+       <b>이자 설정</b>
+    </td>
+    <td>
+       <div class="custom-control custom-switch">
+	      <input type="checkbox" class="custom-control-input" id="switch1" name="example">
+	      <label class="custom-control-label" for="switch1">Toggle me</label>
+	    </div>
     </td>
    </tr>   
 </table>    
