@@ -11,7 +11,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<title>일기장 조회</title>
+<title>Insert title here</title>
 <style>
 	.regi_table td {
 		padding: 15px;
@@ -19,13 +19,14 @@
 </style>
 </head>
 <body>
+<form id="modform" action="/modi_table_give?bno=${board.bno }" method="post">
 	<table border="1" class="regi_table" style="border: 5px solid #00ACE1;">
    <tr>
     <td width=150>
        <b>누가</b>
     </td>
     <td width=500>
-       <input type="text" class="form-control" id="who" name='who' value="${board.who }" readonly="readonly" style="width:200px; float: left;">&nbsp;(이)에게/께
+       <input type="text" class="form-control" id="who" name='who' value="<c:out value='${board.who }'/>" style="width:200px; float: left;">&nbsp;(이)에게/께
     </td>
    </tr> 
     <tr>
@@ -33,7 +34,7 @@
        <b>언제</b>
     </td>
     <td>
-       <input type="text" class="form-control" name="when_" value="<fmt:formatDate value="${board.when_ }" pattern="yyyy년 MM월 dd일"></fmt:formatDate>" readonly="readonly" id="DatePicker" style="width:200px; float: left;">&nbsp;에
+       <input type="text" class="form-control" name="when_" value='<fmt:formatDate pattern = "yyyy/MM/dd" value = "${board.when_}" />' id="DatePicker" style="width:200px; float: left;">&nbsp;에
     </td>
    </tr> 
     <tr>
@@ -41,7 +42,7 @@
        <b>왜</b>
     </td>
     <td>
-       <input type="text" class="form-control" id="" value="${board.why }" readonly="readonly" name="why" style="">
+       <input type="text" class="form-control" id="" value="<c:out value='${board.why }'/>" name="why" style="">
     </td>
    </tr> 
     <tr>
@@ -49,7 +50,7 @@
        <b>얼만큼</b>
     </td>
     <td>
-       <input type="text" class="form-control" id="" value="${board.how }" readonly="readonly" name="how" style="width:200px; float: left;">&nbsp;원을 빌려갔다!!<br>
+       <input type="text" class="form-control" id="" value="<c:out value='${board.how }'/>" name="how" style="width:200px; float: left;">&nbsp;원을 빌려갔다!!<br>
         <p style="clear: both;"><br>그래서</p>
     </td>
    </tr> 
@@ -58,7 +59,7 @@
        <b>기한</b>
     </td>
     <td>
-       <input type="text" class="form-control" name="until_" id="DatePicker" value="<fmt:formatDate value="${board.until_ }" pattern="yyyy년 MM월 dd일"></fmt:formatDate>" style="width:200px; float: left;"> 까지
+       <input type="text" class="form-control" name="until_" id="DatePicker" value='<fmt:formatDate pattern = "yyyy/MM/dd" value = "${board.until_}" />' style="width:200px; float: left;"> 까지
     </td>
    </tr> 
     <tr>
@@ -66,7 +67,7 @@
        <b>메모</b>
     </td>
     <td>
-       <textarea class="form-control" id="" readonly="readonly" name="memo">${board.memo }</textarea>
+       <textarea class="form-control" id="" name="memo"><c:out value='${board.memo }'/></textarea>
     </td>
    </tr> 
    <tr>
@@ -81,11 +82,11 @@
     </td>
    </tr>   
 </table> 
+
 <br>
 <p>
-	<a href="modi_table_give?bno=${board.bno }"><button type="button" class="btn btn-success">수정</button></a>
-	<a href="keep_table_give?bno=${board.bno }"><button type="button" class="btn btn-info">보관</button></a>
-	<a href="del_table_give?bno=${board.bno }"><button type="button" class="btn btn-danger">삭제</button></a>
-</p>	
+	<button type="submit" class="btn btn-secondary">완료</button>
+</p>
+</form>	
 </body>
 </html>

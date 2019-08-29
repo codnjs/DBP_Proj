@@ -51,7 +51,7 @@
 	  <div class="form-group">	
 		<input type="password" id="userpw" name="userpw" placeholder="비밀번호"><br>
 	  </div>
-		<button type="button" class="btn btn-success" onclick="loginCheck()"> 로그인 </button>
+		<button type="submit" class="btn btn-success" onclick="loginCheck()"> 로그인 </button>
 	</form>
   </div>
 </div>

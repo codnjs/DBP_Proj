@@ -24,18 +24,21 @@ public interface GiveBoardMapper {
 	
 	
 	// 글 작성(갑,을)
-	@Insert("insert into tbl_give_board (bno, who, how, why) values (seq_board.nextval, #{who}, #{how}, #{why})")
+	@Insert("insert into tbl_give_board (bno, who, when_, how, why, until_) values (seq_board.nextval, #{who}, #{when_}, #{how}, #{why}, #{until_})")
 	public void insert (GiveBoardVO board);
 	
 	
 	// 글 수정
-	@Update("update tbl_give_board set title =#{title}, content=#{content}, writer=#{writer}, updatedate =sysdate where bno = #{bno}")
+	@Update("update tbl_give_board set who=#{who}, when_=#{when_}, until_=#{until_}, how=#{how}, why=#{why}, memo=#{memo}, interest=#{interest} where bno = #{bno}")
 	public void update(GiveBoardVO board); 
 		
 	
 	// 글 삭제
 	@Delete("delete tbl_give_board where bno = #{bno}")
 	public void delete(int bno);
+	
+	@Insert("insert into tbl_give_board_keep (kno, bno) values (seq_give_keep.nextval, seq_board.nextval)")
+	public void keep(int kno);
 
 	
 	@Select("select * from tbl_give_board where ${type} like '%'||#{keyword}||'%'")

@@ -11,6 +11,8 @@ public class GiveBoardVO {
 	public String how;
 	public String why;
 	public String memo;
+	public Date today;
+	public int interest;
 	
 	public String getUserid() {
 		return userid;
@@ -61,10 +63,24 @@ public class GiveBoardVO {
 		this.why = why;
 	}
 	
+	public Date getToday() {
+		return today;
+	}
+	public void setToday(Date today) {
+		this.today = today;
+	}
+	public int getInterest() {
+		return interest;
+	}
+	public void setInterest(int interest) {
+		this.interest = interest;
+	}
+	
 	@Override
 	public String toString() {
-		return "BoardVO [bno=" + bno + ", userid=" + userid + ", who=" + who + ", when_=" + when_ + ", until_="
-				+ until_ + ", how=" + how + ", why=" + why + ", memo=" + memo + "]";
+		return "GiveBoardVO [bno=" + bno + ", userid=" + userid + ", who=" + who + ", when_=" + when_ + ", until_="
+				+ until_ + ", how=" + how + ", why=" + why + ", memo=" + memo + ", today=" + today + ", interest="
+				+ interest + "]";
 	}
 	
 }

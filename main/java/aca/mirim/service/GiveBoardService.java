@@ -13,6 +13,7 @@ public interface GiveBoardService {
 	public void reigster(GiveBoardVO board);
 	public void modify (GiveBoardVO board);
 	public void remove (int bno);
+	public void keep (int kno);
 	public GiveBoardVO get(int bno);
 	public List<GiveBoardVO> getSearch(Criteria cri);
 }

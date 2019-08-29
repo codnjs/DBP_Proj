@@ -4,7 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<title>일기장 등록</title>
 <style>
 	.regi_table td {
 		padding: 15px;
@@ -12,6 +17,7 @@
 </style>
 </head>
 <body>
+<form action="/regi_table_give" method="post">
 	<table border="1" class="regi_table" style="border: 5px solid #00ACE1;">
    <tr>
     <td width=100>
@@ -26,7 +32,7 @@
        <b>언제</b>
     </td>
     <td>
-       <input type="text" class="form-control" name="when_" id="DatePicker" style="width:200px; float: left;">&nbsp;에
+       <input type="date" class="form-control" name="when_" id="DatePicker" style="width:200px; float: left;">&nbsp;에
     </td>
    </tr> 
     <tr>
@@ -51,7 +57,7 @@
        <b>기한</b>
     </td>
     <td>
-       <input type="text" class="form-control" name="until_" id="DatePicker" style="width:200px; float: left;"> 까지
+       <input type="date" class="form-control" name="until_" id="DatePicker" style="width:200px; float: left;"> 까지
     </td>
    </tr> 
     <tr>
@@ -59,8 +65,7 @@
        <b>메모</b>
     </td>
     <td>
-       <input type="text" class="form-control" id="" placeholder="이번이 벌써 네 번째인데... 미안해죽겠다.. 
-얼른 갚아야할듯" name="memo">
+       <textarea class="form-control" id="" placholder="이번이 벌써 네 번째인데... 미안해죽겠다.. 빨리 갚아야지!" name="memo">${board.memo }</textarea>
     </td>
    </tr> 
    <tr>
@@ -69,11 +74,14 @@
     </td>
     <td>
        <div class="custom-control custom-switch">
-	      <input type="checkbox" class="custom-control-input" id="switch1" name="example">
+	      <input type="checkbox" class="custom-control-input" id="switch1" name="interest">
 	      <label class="custom-control-label" for="switch1"></label>
 	    </div>
     </td>
    </tr>  
-</table>    
+</table> 
+<br> 
+<button type="submit" class="btn btn-secondary">완료</button> 
+</form>
 </body>
 </html>

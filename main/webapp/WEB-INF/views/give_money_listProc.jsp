@@ -43,7 +43,7 @@
 	<div class="container-list" style="clear: both;">
 	  <div class="list-group">
 	  	<c:forEach var="board" items="${give_money_list}">
-	    	<a class="list-group-item"><button type="button" data-toggle="modal" data-target="#give_read_modal" style="border: none; background-color: #ffffff;">
+	    	<a href="read_table_give?bno=${board.bno }" class="list-group-item" target="_blank"><button type="button" style="border: none; background-color: #ffffff;">
 	    		&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${board.when_ }" pattern="yyyy년 MM월 dd일 작성"></fmt:formatDate></button></a>
 	    </c:forEach>
 	  </div>

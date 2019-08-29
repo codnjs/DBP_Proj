@@ -44,9 +44,12 @@ public class HomeController {
 	
 	@GetMapping("/template")
 	public void template() {
-		System.out.println("template 작동");
-		
-		
+		System.out.println("template 작동");		
+	}
+	
+	@GetMapping("/rightMenu")
+	public void rightMenu() {
+		System.out.println("rightMenu 실행");
 	}
 	
 }

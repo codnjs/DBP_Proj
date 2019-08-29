@@ -45,4 +45,9 @@ public class GiveBoardServiceImpl implements GiveBoardService {
 		return brdMapper.getSearch(cri);
 	}
 
+	@Override
+	public void keep(int kno) {
+		brdMapper.keep(kno);	
+	}
+
 }

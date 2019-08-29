@@ -32,6 +32,6 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void logout(HttpSession session) {
-		
+		session.invalidate();
 	}
 }

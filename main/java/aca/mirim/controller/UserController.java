@@ -37,6 +37,7 @@ public class UserController {
 	@GetMapping("/login")
 	public void login(@ModelAttribute("vo") UserVO uservo) {
 		System.out.println("login get..." );
+
 	}
 	
 	@GetMapping("/loginProc")
@@ -67,8 +68,13 @@ public class UserController {
 			mav.addObject("msg", "failure");
 		}*/
 		System.out.println(uservo);
-		System.out.println(userService.login(uservo));
-		System.out.println("로그인됨");
+		if  (userService.login(uservo) == null) {
+			System.out.println("로그인 실패");
+		} else {
+			System.out.println(userService.login(uservo));
+			System.out.println("로그인됨");
+		}
+		
 	}
 	
 	@GetMapping("/signup")
@@ -87,5 +93,15 @@ public class UserController {
 		System.out.println(uservo);
 		userService.signUp(uservo);
 		System.out.println("값 집어넣음");
+	}
+	
+	@GetMapping("/logout")
+	public ModelAndView logout(HttpSession session) {
+		userService.logout(session);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/");
+		mav.addObject("msg", "logout");
+		
+		return mav;
 	}
 }

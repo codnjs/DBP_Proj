@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import aca.mirim.domain.GiveBoardVO;
 import aca.mirim.domain.Criteria;
@@ -68,18 +69,17 @@ public class BoardController {
 		return "/get_money_list";
 	}
 	
-	@GetMapping("/register")
-	public void registerGET(GiveBoardVO board, Model model) throws Exception {
-		System.out.println("register get....");
+	@GetMapping("/regi_table_give")
+	public void registerGet(GiveBoardVO board) {
+		System.out.println("reg get.... ");
 	}
-	
-	@PostMapping("/register")
-	public String registerPOST(GiveBoardVO board, Model model) throws Exception {
-		System.out.println("register post...");
+
+	@PostMapping("/regi_table_give")
+	public String registerPost(GiveBoardVO board) {
+		System.out.println("reg post.....");
 		giveBrdService.reigster(board);
-		model.addAttribute("result", "success");
-		
-		return "redirect:/list";
+		System.out.println("reg ¿Ï¼º");
+		return "redirect:/give_money_list"; 
 	}
 	
 	@GetMapping("/read_table_give")
@@ -94,6 +94,39 @@ public class BoardController {
 		System.out.println("/read_table_give.... ");
 		System.out.println(giveBrdService.get(bno));
 		model.addAttribute("board", giveBrdService.get(bno));		
+	}
+	
+	@GetMapping("/modi_table_give")
+	public void modiget(@RequestParam("bno") int bno, Model model, GiveBoardVO board) {		 
+		System.out.println("/modi_table_give get.... ");
+		System.out.println(giveBrdService.get(bno));
+		model.addAttribute("board", giveBrdService.get(bno));	
+		
+	}
+	
+	@PostMapping("/modi_table_give")
+	public String modipost(@RequestParam("bno") int bno, Model model, GiveBoardVO board) {		 
+		System.out.println("/modi_table_give post.... ");
+		System.out.println(giveBrdService.get(bno));
+		System.out.println(board);
+		giveBrdService.modify(board);
+		
+		return "redirect:/read_table_give?bno=" + bno;
+	}
+	
+	@GetMapping("/del_table_give")
+	public void remove(@RequestParam("bno") int bno) {
+		System.out.println("del..." + bno);
+		giveBrdService.remove(bno);
+	}
+	
+	@GetMapping("/keep_table_give")
+	public void keep(@RequestParam("kno") int kno, @RequestParam("bno") int bno) {
+		System.out.println("keep...kno");
+		giveBrdService.keep(kno);
+		System.out.println("keep...bno");
+		giveBrdService.remove(bno);
+		
 	}
 	
 	@GetMapping("/main")

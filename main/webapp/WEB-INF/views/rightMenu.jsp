@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,7 +32,7 @@
 <body>
 	<div class="right-icons">
 		<div id="right-icon">
-			<button type="button" data-toggle="modal" data-target="#give_regi_modal"><img src="${pageContext.request.contextPath}/resources/img/edit.png"></button>
+			<a target="_blank"><button type="button" onclick="javascript:location.href='/regi_table_give'"><img src="${pageContext.request.contextPath}/resources/img/edit.png"></button></a>
 		</div>
 		<div id="right-icon">
 			<button type="button" data-toggle="modal" data-target="#myModal"><img src="${pageContext.request.contextPath}/resources/img/calendar (2).png"></button>
